@@ -26,6 +26,10 @@ int main() {
     printf("\nResult: ");
     print_list(A);
 
+    printf("\nRemoving node containing 99 from the list...");
+    A = remove_node(A, 99);
+    printf("\nResult: ");
+    print_list(A);
 
     return 0;
 }
