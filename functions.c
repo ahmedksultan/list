@@ -51,16 +51,21 @@ struct node * remove_node(struct node * front, int data) {
         return front2; }
     // cycling through linked list, looking for node w/ matching data
     struct node * a = front;
+    // checking to make sure both current and next are NOT null
     while (a != NULL && a->next != NULL) {
+        // checking to see if next data is equal to target
         if (a->next->i == data) {
             // creating node pointing to the node after the soon-to-be deleted node
             struct node * newNext = a->next->next;
+            // creating node pointing to node being deleted
             struct node * oldNext = a->next;
             a->next = newNext;
+            // freeing allocated space for node being deleted
             free(oldNext);
             oldNext = NULL;
             return front;
         }
+        // iterating to next node
         a = a->next;
     }
     // this return only occurs when a) the list is empty, or b) when the entire list has been searched
@@ -71,7 +76,7 @@ struct node * free_list(struct node * a) {
     // iterating through list
     while (a != NULL) {
         // printing while freeing as shown in example
-        printf("Freeing node %d\n", a->i);
+        printf("Freeing %d\n", a->i);
         struct node * old = a;
         // moving to next
         a = a->next;
