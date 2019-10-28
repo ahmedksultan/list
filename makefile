@@ -13,3 +13,4 @@ run:
 clean:
 	rm *.o
 	rm *~
+	rm program
