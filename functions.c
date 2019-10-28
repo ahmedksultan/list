@@ -45,24 +45,21 @@ struct node * insert_front(struct node * a, int n) {
 struct node * remove_node(struct node * front, int data) {
     // checking to see if front has target data
     if (front->i == data) {
-        front = front->next;
-        return front; }
+        struct node * front2 = front->next;
+        free(front);
+        front = NULL;
+        return front2; }
     // cycling through linked list, looking for node w/ matching data
     struct node * a = front;
     while (a != NULL) {
-        if (a->i == data) {
+        if (a->next->i == data) {
             // creating node pointing to the node after the soon-to-be deleted node
-            struct node * newNext = a->next;
-            // cycling through list to get to node before soon-to-be deleted node
-            struct node * b = front;
-            while (b != NULL) {
-                if (b->next == a) {
-                        // setting next node of node before deleted node to node after deleted node
-                        b->next = newNext;
-                }
-            }
-            a = NULL;
-            free(a);
+            struct node * newNext = a->next->next;
+            struct node * oldNext = a->next;
+            a->next = newNext;
+            free(oldNext);
+            oldNext = NULL;
+            return front;
         }
     }
     // this return only occurs when a) the list is empty, or b) when the entire list has been searched
