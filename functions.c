@@ -61,6 +61,8 @@ struct node * remove_node(struct node * front, int data) {
             oldNext = NULL;
             return front;
         }
+        a = a->next;
+
     }
     // this return only occurs when a) the list is empty, or b) when the entire list has been searched
     return front;
